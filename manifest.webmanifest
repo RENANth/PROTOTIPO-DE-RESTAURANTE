@@ -1,0 +1,14 @@
+{
+  "name": "Hamburgueria Sabor & Arte",
+  "short_name": "Sabor&Arte",
+  "description": "Hambúrguer artesanal com entrega rápida. Peça online!",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0b0f",
+  "theme_color": "#d62828",
+  "icons": [
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
+
+

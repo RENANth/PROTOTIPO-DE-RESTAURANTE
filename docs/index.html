@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#d62828" />
+    <meta name="application-name" content="Sabor & Arte" />
+    <title>Hamburgueria Sabor & Arte — Loja</title>
+    <meta name="description" content="Hambúrguer artesanal, entrega rápida e ingredientes premium. Faça seu pedido online!" />
+    <meta name="robots" content="index, follow" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/icon.svg" />
+    <meta property="og:title" content="Hamburgueria Sabor & Arte" />
+    <meta property="og:description" content="Hambúrguer artesanal com sabor de verdade. Peça online!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="./icons/icon.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hamburgueria Sabor & Arte" />
+    <meta name="twitter:description" content="Hambúrguer artesanal com sabor de verdade. Peça online!" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <a href="#" class="brand" aria-label="Página inicial">
+          <span class="brand-mark">🍔</span>
+          <span class="brand-text">Sabor & Arte</span>
+        </a>
+        <nav class="nav">
+          <a href="#cardapio">Cardápio</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <button class="cart-button" id="open-cart" aria-label="Abrir carrinho">
+          <span class="icon">🛒</span>
+          <span>Carrinho</span>
+          <span class="badge" id="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1>Hambúrguer artesanal com sabor de verdade</h1>
+            <p>
+              Pães frescos, blends selecionados e molhos exclusivos. Faça seu pedido
+              online e receba onde estiver.
+            </p>
+            <div class="hero-ctas">
+              <a href="#cardapio" class="btn btn-primary">Ver cardápio</a>
+              <button class="btn btn-ghost" id="open-cart-hero">Ver carrinho</button>
+            </div>
+            <ul class="hero-highlights">
+              <li>✓ Entrega rápida</li>
+              <li>✓ Ingredientes premium</li>
+              <li>✓ Opções vegetarianas</li>
+            </ul>
+          </div>
+          <div class="hero-media">
+            <img
+              src="https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=1600&auto=format&fit=crop"
+              alt="Hambúrguer artesanal suculento"
+              class="hero-img"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="menu" id="cardapio">
+        <div class="container">
+          <div class="section-head">
+            <h2>Nosso cardápio</h2>
+            <p>Escolha sua combinação preferida e adicione ao carrinho.</p>
+          </div>
+
+          <div class="filters">
+            <div class="tabs" id="category-tabs" role="tablist" aria-label="Categorias do cardápio">
+              <!-- botões gerados pelo JS -->
+            </div>
+            <label class="search">
+              <span class="icon">🔎</span>
+              <input type="search" id="search-input" placeholder="Buscar no cardápio..." aria-label="Buscar no cardápio" />
+            </label>
+          </div>
+
+          <div class="products-grid" id="products-grid" aria-live="polite">
+            <!-- itens do cardápio renderizados pelo JS -->
+          </div>
+        </div>
+      </section>
+
+      <section class="about" id="sobre">
+        <div class="container about-grid">
+          <div>
+            <h3>Sobre a Sabor & Arte</h3>
+            <p>
+              Nascemos da paixão por burgers bem feitos. Somos uma hamburgueria
+              artesanal com foco em qualidade, experiência e cuidado em cada detalhe.
+            </p>
+            <ul class="list">
+              <li>Blend próprio moído diariamente</li>
+              <li>Pães de fermentação natural</li>
+              <li>Molhos autorais</li>
+            </ul>
+          </div>
+          <div class="about-card">
+            <h4>Horários</h4>
+            <p>Terça a Domingo, 18h às 23h</p>
+            <h4>Retirada & Entrega</h4>
+            <p>Retire no balcão ou receba em casa</p>
+            <h4>Bairro</h4>
+            <p>Centro — Sua Cidade</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contato">
+        <div class="container contact-grid">
+          <div>
+            <h3>Fale com a gente</h3>
+            <p>Dúvidas, feedbacks ou eventos? Estamos por aqui.</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" id="whatsapp-contact" href="#">WhatsApp</a>
+              <a class="btn btn-ghost" href="mailto:contato@saborearte.com">E-mail</a>
+            </div>
+          </div>
+          <div class="map-card">
+            <iframe
+              title="Mapa"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.7849717608007!2d-46.6585801!3d-23.5770426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c97b7d8e8f%3A0x9a1d2b2d2a9b1b1!2sParque%20do%20Ibirapuera!5e0!3m2!1spt-BR!2sBR!4v1610000000000!5m2!1spt-BR!2sBR"
+              width="100%"
+              height="260"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="brand small">
+            <span class="brand-mark">🍔</span>
+            <span class="brand-text">Sabor & Arte</span>
+          </div>
+          <p class="muted">© <span id="year"></span> Sabor & Arte. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-actions">
+          <a href="#cardapio" class="btn btn-ghost">Fazer pedido</a>
+          <button class="btn btn-primary" id="open-cart-footer">Abrir carrinho</button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Overlays e Carrinhos/Modais -->
+    <div class="overlay" id="cart-overlay" hidden></div>
+    <div class="overlay" id="modal-overlay" hidden></div>
+    <aside class="cart" id="cart" aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+      <header class="cart-header">
+        <h3 id="cart-title">Seu carrinho</h3>
+        <button class="icon-btn" id="close-cart" aria-label="Fechar carrinho">✕</button>
+      </header>
+      <div class="cart-body" id="cart-items">
+        <!-- itens do carrinho -->
+      </div>
+      <footer class="cart-footer">
+        <div class="notice" id="store-status" hidden></div>
+        <fieldset class="method">
+          <legend>Método</legend>
+          <label class="radio">
+            <input type="radio" name="method" value="retirada" id="method-pickup" checked />
+            <span>Retirada</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="method" value="entrega" id="method-delivery" />
+            <span>Entrega</span>
+          </label>
+        </fieldset>
+        <div class="delivery-fields" id="delivery-fields" hidden>
+          <label class="field">
+            <span>Endereço para entrega</span>
+            <input type="text" id="address" placeholder="Rua, número, bairro" />
+          </label>
+          <div class="summary small">
+            <span>Taxa de entrega</span>
+            <strong id="delivery-fee">R$ 0,00</strong>
+          </div>
+        </div>
+        <div class="summary">
+          <span>Subtotal</span>
+          <strong id="cart-total">R$ 0,00</strong>
+        </div>
+        <div class="summary">
+          <span>Total</span>
+          <strong id="cart-grand-total">R$ 0,00</strong>
+        </div>
+        <button class="btn btn-primary btn-full" id="checkout">Finalizar pelo WhatsApp</button>
+      </footer>
+    </aside>
+
+    <!-- Modal de personalização -->
+    <aside class="modal" id="customize-modal" aria-hidden="true" role="dialog" aria-labelledby="customize-title">
+      <header class="modal-header">
+        <h3 id="customize-title">Personalizar</h3>
+        <button class="icon-btn" id="close-modal" aria-label="Fechar">✕</button>
+      </header>
+      <div class="modal-body" id="customize-body">
+        <!-- conteúdo gerado via JS -->
+      </div>
+      <footer class="modal-footer">
+        <button class="btn btn-ghost" id="cancel-customize">Cancelar</button>
+        <button class="btn btn-primary" id="confirm-customize">Adicionar</button>
+      </footer>
+    </aside>
+
+    <!-- FAB Carrinho (mobile) -->
+    <button class="fab-cart" id="fab-cart" aria-label="Abrir carrinho">
+      🛒 <span id="fab-count">0</span>
+    </button>
+  </body>
+  </html>
+
+
