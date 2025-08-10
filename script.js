@@ -125,7 +125,7 @@ function renderProducts() {
     const wrapper = document.createElement('article');
     wrapper.className = 'product';
     wrapper.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='./icons/placeholder.svg'" loading="lazy" />
+      ${buildProductImageHTML(product)}
       <div>
         <h4>${product.name}</h4>
         <p>${product.description}</p>
@@ -161,6 +161,45 @@ function generateKey(productId, addonIds = [], obs = '') {
   const extrasKey = addonIds.slice().sort().join(',');
   const obsKey = obs ? obs.replace(/\s+/g, ' ').slice(0, 60) : '';
   return `${productId}|${extrasKey}|${obsKey}`;
+}
+
+// --------- Imagens locais com <picture> e srcset ---------
+function isLocalAsset(url) {
+  return typeof url === 'string' && url.startsWith('./assets/');
+}
+
+function deriveBase(url) {
+  // remove querystring e extensão
+  const clean = url.split('?')[0];
+  return clean.replace(/\.(avif|webp|jpe?g|png)$/i, '');
+}
+
+function buildProductImageHTML(product, isSmall = false) {
+  const alt = escapeHtml(product.name || '');
+  const placeholder = `./icons/placeholder.svg`;
+  if (isLocalAsset(product.image)) {
+    const base = deriveBase(product.image);
+    const sizes = isSmall ? '64px' : '(min-width: 1024px) 300px, (min-width: 720px) 240px, 45vw';
+    const defaultSrc = `${base}-640.webp`;
+    return `
+      <picture>
+        <source type="image/avif" srcset="${base}-320.avif 320w, ${base}-640.avif 640w, ${base}-960.avif 960w" sizes="${sizes}">
+        <source type="image/webp" srcset="${base}-320.webp 320w, ${base}-640.webp 640w, ${base}-960.webp 960w" sizes="${sizes}">
+        <img src="${defaultSrc}" alt="${alt}" loading="lazy" onerror="this.onerror=null;this.src='${placeholder}'" />
+      </picture>
+    `;
+  }
+  // Remoto (fallback simples)
+  return `<img src="${product.image}" alt="${alt}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${placeholder}'" loading="lazy" />`;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function addItem(product, qty = 1, opts = null) {
@@ -216,7 +255,7 @@ function renderCart() {
     const item = document.createElement('div');
     item.className = 'cart-item';
     item.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='./icons/placeholder.svg'" loading="lazy" />
+      ${buildProductImageHTML(product, true)}
       <div>
         <h5>${product.name}</h5>
         <div class="muted">${formatBRL(product.price)} • <span data-role="line">${formatBRL(product.price * qty)}</span></div>
