@@ -301,6 +301,8 @@ function init() {
   els.fabCart?.addEventListener('click', openCart);
   els.cartOverlay?.addEventListener('click', closeCart);
   els.checkout?.addEventListener('click', handleCheckout);
+  // tema
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
   els.search?.addEventListener('input', (e) => { state.search = e.target.value; renderProducts(); });
   els.methodPickup?.addEventListener('change', () => { state.method = 'retirada'; syncUI(); });
   els.methodDelivery?.addEventListener('change', () => { state.method = 'entrega'; syncUI(); });
@@ -316,6 +318,8 @@ function init() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js').catch(() => {});
   }
+  // aplicar tema salvo
+  applySavedTheme();
 }
 
 document.addEventListener('DOMContentLoaded', init);
@@ -387,6 +391,23 @@ function updateStoreOpenStatus() {
     els.storeStatus.textContent = `Estamos fechados agora. Funcionamos das ${String(BUSINESS.open.from).padStart(2, '0')}h às ${String(BUSINESS.open.to).padStart(2, '0')}h.`;
   }
   if (els.checkout) els.checkout.disabled = !isOpen;
+}
+
+// --------- Tema Claro/Escuro ---------
+function applySavedTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+}
+
+function toggleTheme() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.removeItem('theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+  }
 }
 
 // --------- Persistência ---------
